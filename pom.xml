@@ -8,11 +8,11 @@
 		<version>1.5.10.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>EurekaClientProvider</groupId>
-	<artifactId>EurekaClientProvider</artifactId>
+	<groupId>Zuul</groupId>
+	<artifactId>Zuul</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>EurekaClientProvider</name>
-	<description>EurekaClientProvider</description>
+	<name>Zuul</name>
+	<description>Zuul</description>
 	<packaging>jar</packaging>
 
    <properties>
@@ -24,15 +24,15 @@
 
 	<dependencies>
 	
-      <dependency>
-         <groupId>org.springframework.cloud</groupId>
-         <artifactId>spring-cloud-starter-eureka</artifactId>
-      </dependency>
-	
-	  <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-	  </dependency>
+		<dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-starter-zuul</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
       <dependency>
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-test</artifactId>
