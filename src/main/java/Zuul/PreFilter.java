@@ -49,15 +49,15 @@ public class PreFilter extends ZuulFilter {
 	    // String user = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getHeader("X-AUTH-ID");
 	    */
 		
-		/*
+		
 		String token = request.getParameter("token");
         if (token == null || token.isEmpty()) {
             ctx.setSendZuulResponse(false);
             ctx.setResponseStatusCode(401);
             ctx.setResponseBody("token is empty");
         }
-		*/
 		
+
 	    return null;
     }
 }
