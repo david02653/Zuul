@@ -3,8 +3,6 @@ package Zuul;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.logging.Logger;
-
 
 import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
 import org.springframework.http.HttpHeaders;
@@ -15,12 +13,17 @@ import org.springframework.stereotype.Component;
 
 import net.minidev.json.JSONObject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 
 
 
 @Component
 public class MyFallbackProvider implements FallbackProvider {
+	final Logger logger = LoggerFactory.getLogger(getClass());
+	
 	/*
 	 * 指名要返回的服務，如果全部的話就return "*"
 	 * */
@@ -69,9 +72,9 @@ public class MyFallbackProvider implements FallbackProvider {
 	
 	@Override
 	public ClientHttpResponse fallbackResponse(Throwable cause) {
-		if (cause != null) {
-			String reason = cause.getMessage();
-			//logger.info("Excption {}",reason);
+		if (cause != null && cause.getCause() != null) {
+			String reason = cause.getCause().getMessage();;
+			logger.info("Excption :{}" , reason);
 	    }
 	    return fallbackResponse();
 	}
