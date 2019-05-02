@@ -3,6 +3,8 @@ package Zuul;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Logger;
+
 
 import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
 import org.springframework.http.HttpHeaders;
@@ -74,41 +76,4 @@ public class MyFallbackProvider implements FallbackProvider {
 	    return fallbackResponse();
 	}
 	
-/*
-	@Override
-	public ClientHttpResponse fallbackResponse(Throwable cause) {
-		return new ClientHttpResponse() {
-			public InputStream getBody() throws IOException {
-				JSONObject r = new JSONObject();
-				r.put("state", "9999");
-				r.put("msg", "系統錯誤，請求失敗。");
-				return new ByteArrayInputStream(r.toJSONString().getBytes("UTF-8"));
-			}
-			
-			public HttpHeaders getHeaders() {
-				HttpHeaders headers = new HttpHeaders();
-				// 和body中的內容編碼一致，否則容易亂碼
-				headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-				return headers;
-			}
-			
-			public HttpStatus getStatusCode() throws IOException {
-				return HttpStatus.OK;
-			}
- 
-			public int getRawStatusCode() throws IOException {
-				return HttpStatus.OK.value();
-			}
- 
-			public String getStatusText() throws IOException {
-				return HttpStatus.OK.getReasonPhrase();
-			}
- 
-			public void close() {
- 
-			}
-
-		};
-	}
-	*/
 }
