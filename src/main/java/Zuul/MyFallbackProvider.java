@@ -4,7 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
+import org.springframework.cloud.netflix.zuul.filters.route.ZuulFallbackProvider;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import net.minidev.json.JSONObject;
 
 @Component
-public class MyFallbackProvider implements FallbackProvider {
+public class MyFallbackProvider implements ZuulFallbackProvider {
 	/*
 	 * 指名要返回的服務，如果全部的話就return "*"
 	 * */
@@ -60,7 +60,7 @@ public class MyFallbackProvider implements FallbackProvider {
 
 		};
 	}
-
+/*
 	@Override
 	public ClientHttpResponse fallbackResponse(Throwable cause) {
 		return new ClientHttpResponse() {
@@ -96,4 +96,5 @@ public class MyFallbackProvider implements FallbackProvider {
 
 		};
 	}
+	*/
 }
