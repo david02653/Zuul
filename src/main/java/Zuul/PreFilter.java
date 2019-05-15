@@ -53,7 +53,7 @@ public class PreFilter extends ZuulFilter {
 		if(serviceId == null || serviceId.isEmpty() || !serviceId.equals(service)) {
 			ctx.setSendZuulResponse(false);
 			ctx.setResponseStatusCode(401);
-			ctx.setResponseBody("service is not" + service + ": " + url);
+			ctx.setResponseBody("service is not" + service + ": " + serviceId);
 		}
 
 	    return null;
