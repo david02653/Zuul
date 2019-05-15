@@ -42,10 +42,13 @@ public class PreFilter extends ZuulFilter {
 		logger.info("--->>> PreFilter"+ request.getMethod() + "," + request.getRequestURL().toString());
 		
 		String url = request.getRequestURI().toString();
-		String[] split1 = url.split("/");
-		String[] split2 = split1[0].split("?");
+		String serviceId = "";
 		
-		String serviceId = split2[0];
+		if(url.contains("/")) {
+			serviceId = url.split("/")[0];
+			if(serviceId.contains("?"))
+				serviceId = url.split("?")[0];
+		}
 		/*
 		if(serviceId == null || serviceId.isEmpty() || !serviceId.equals(service)) {
 			ctx.setSendZuulResponse(false);
