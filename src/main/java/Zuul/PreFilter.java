@@ -9,13 +9,14 @@ import org.springframework.context.annotation.Configuration;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.util.logging.*;
 
 
 @Configuration
 public class PreFilter extends ZuulFilter {
-	final Logger logger = LoggerFactory.getLogger(getClass());
+	final Logger logger = Logger.getLogger(getClass().getName());
+	final String service = "service-provider";
 	
 	// 數字越大，優先級越低
 	@Override
@@ -38,22 +39,19 @@ public class PreFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 		
-		logger.info("--->>> PreFilter {},{}", request.getMethod(), request.getRequestURL().toString());
+		logger.info("--->>> PreFilter"+ request.getMethod() + "," + request.getRequestURL().toString());
 		
 		String url = request.getRequestURI();
-		String[] split = url.split("/");
+		String[] split1 = url.split("/");
+		String[] split2 = split1[0].split("?");
 		
+		String serviceId = split2[0];
 		
-		 ctx.setSendZuulResponse(false);
-         ctx.setResponseStatusCode(401);
-         ctx.setResponseBody("url: " + url);
-		
-		/*
-		String token = request.getParameter("token");
-        if (token == null || token.isEmpty()) {
-           
-        }
-		*/
+		if(serviceId == null || serviceId.isEmpty() || !serviceId.equals(service)) {
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(401);
+			ctx.setResponseBody("service is not" + service + ": " + url);
+		}
 
 	    return null;
     }
