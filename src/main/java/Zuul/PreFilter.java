@@ -40,23 +40,20 @@ public class PreFilter extends ZuulFilter {
 		
 		logger.info("--->>> PreFilter {},{}", request.getMethod(), request.getRequestURL().toString());
 		
+		String url = request.getRequestURI();
+		String[] split = url.split("/");
+		
+		
+		 ctx.setSendZuulResponse(false);
+         ctx.setResponseStatusCode(401);
+         ctx.setResponseBody("url: " + url);
+		
 		/*
-		Principal principal = request.getUserPrincipal();
-		String userId = principal.getName();
-	    ctx.addZuulRequestHeader("X-AUTH-ID",userId);
-	    
-	    // 別的服務可以透過下面code獲得參數
-	    // String user = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getHeader("X-AUTH-ID");
-	    */
-		
-		
 		String token = request.getParameter("token");
         if (token == null || token.isEmpty()) {
-            ctx.setSendZuulResponse(false);
-            ctx.setResponseStatusCode(401);
-            ctx.setResponseBody("token is empty");
+           
         }
-		
+		*/
 
 	    return null;
     }
