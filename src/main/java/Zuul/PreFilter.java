@@ -50,11 +50,11 @@ public class PreFilter extends ZuulFilter {
 				serviceId = url.split("?")[0];
 		}
 		
-		if(serviceId == null || serviceId.isEmpty() || !serviceId.equals(service)) {
+		//if(serviceId == null || serviceId.isEmpty() || !serviceId.equals(service)) {
 			ctx.setSendZuulResponse(false);
 			ctx.setResponseStatusCode(401);
 			ctx.setResponseBody("service is not " + service + ": " + url.split("/")[0] + " / " + url.split("/")[1]);
-		}
+		//}
 
 	    return null;
     }
