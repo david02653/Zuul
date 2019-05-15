@@ -15,7 +15,7 @@ import java.util.logging.*;
 
 @Configuration
 public class PreFilter extends ZuulFilter {
-	//final Logger logger = Logger.getLogger(getClass().getName());
+	final Logger logger = Logger.getLogger(getClass().getName());
 	final String service = "service-provider";
 	
 	// 數字越大，優先級越低
