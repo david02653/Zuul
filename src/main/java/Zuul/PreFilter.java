@@ -46,13 +46,13 @@ public class PreFilter extends ZuulFilter {
 		String[] split2 = split1[0].split("?");
 		
 		String serviceId = split2[0];
-		
+		/*
 		if(serviceId == null || serviceId.isEmpty() || !serviceId.equals(service)) {
 			ctx.setSendZuulResponse(false);
 			ctx.setResponseStatusCode(401);
 			ctx.setResponseBody("service is not" + service + ": " + url);
 		}
-
+*/
 	    return null;
     }
 }
