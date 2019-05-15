@@ -15,7 +15,7 @@ import java.util.logging.*;
 
 @Configuration
 public class PreFilter extends ZuulFilter {
-	final Logger logger = Logger.getLogger(getClass().getName());
+	//final Logger logger = Logger.getLogger(getClass().getName());
 	final String service = "service-provider";
 	
 	// 數字越大，優先級越低
@@ -38,14 +38,14 @@ public class PreFilter extends ZuulFilter {
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
-		
+		/*
 		logger.info("--->>> PreFilter"+ request.getMethod() + "," + request.getRequestURL().toString());
 		
 		String url = request.getRequestURI();
 		String[] split1 = url.split("/");
 		String[] split2 = split1[0].split("?");
 		
-		String serviceId = split2[0];
+		String serviceId = split2[0];*/
 		/*
 		if(serviceId == null || serviceId.isEmpty() || !serviceId.equals(service)) {
 			ctx.setSendZuulResponse(false);
