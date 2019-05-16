@@ -1,6 +1,9 @@
 package Zuul;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.context.annotation.Configuration;
@@ -13,9 +16,8 @@ import java.util.logging.*;
 
 
 @Configuration
-public class PreFilter extends ZuulFilter {
+public class PostFilter extends ZuulFilter {
 	final Logger logger = Logger.getLogger(getClass().getName());
-	final String service = "service-provider";
 	
 	// 數字越大，優先級越低
 	@Override
@@ -25,7 +27,7 @@ public class PreFilter extends ZuulFilter {
 
 	@Override
 	public String filterType() {
-		return FilterConstants.PRE_TYPE;
+		return FilterConstants.POST_TYPE;
 	}
 
 	// 該過濾器是否需要被執行
@@ -35,26 +37,11 @@ public class PreFilter extends ZuulFilter {
 	}
     @Override
     public Object run() {
-        RequestContext ctx = RequestContext.getCurrentContext();
+    	RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 		
-		logger.info("--->>> PreFilter"+ request.getMethod() + "," + request.getRequestURL().toString());
+		logger.info("--->>> PostFilter"+ request.getMethod() + "," + request.getRequestURL().toString());
 		
-		String url = request.getRequestURI().toString();
-		String serviceId = "";
-		
-		if(url.contains("/")) {
-			serviceId = url.split("/")[1];
-			if(serviceId.contains("?"))
-				serviceId = url.split("?")[0];
-		}
-		
-		serviceId = url.split("/")[100];
-		
-		if(serviceId != null || !serviceId.isEmpty() || serviceId.equals(service)) {
-			// do something
-		}
-
-	    return null;
+        return null;
     }
 }

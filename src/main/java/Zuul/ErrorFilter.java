@@ -5,6 +5,7 @@ import java.security.Principal;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.context.annotation.Configuration;
 
 import com.netflix.zuul.ZuulFilter;
@@ -15,7 +16,7 @@ import java.util.logging.*;
 
 
 @Configuration
-public class errorFilter extends ZuulFilter {
+public class ErrorFilter extends ZuulFilter {
 	final Logger logger = Logger.getLogger(getClass().getName());
 	
 	// 數字越大，優先級越低
@@ -26,7 +27,7 @@ public class errorFilter extends ZuulFilter {
 
 	@Override
 	public String filterType() {
-		return "error";
+		return FilterConstants.ERROR_TYPE;
 	}
 
 	// 該過濾器是否需要被執行
@@ -37,8 +38,12 @@ public class errorFilter extends ZuulFilter {
     @Override
     public Object run() {
     	RequestContext ctx = RequestContext.getCurrentContext();
-        Throwable throwable = ctx.getThrowable();
-        
+		HttpServletRequest request = ctx.getRequest();
+		
+		logger.info("--->>> ErrorFilter"+ request.getMethod() + "," + request.getRequestURL().toString());
+		
+		
+		Throwable throwable = ctx.getThrowable();
         /*
         int statusCode = (Integer) ctx.get("error.status_code");
         Object e = ctx.get("error.exception");

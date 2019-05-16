@@ -37,6 +37,16 @@ public class ZuulApplication {
     public PreFilter tokenFilter() {
         return new PreFilter();
     }
+	
+	@Bean
+    public ErrorFilter errorFilter() {
+        return new ErrorFilter();
+    }
+	
+	@Bean
+    public PostFilter postFilter() {
+        return new PostFilter();
+    }
 
 }
 
