@@ -20,11 +20,11 @@ public class GlobalErrorController implements ErrorController{
     @RequestMapping("/error")
     public String error() {
     	RequestContext ctx = RequestContext.getCurrentContext();
-    	/*
+    	
     	String exception = (String)ctx.get("error.exception");
     	int status_code = (int)ctx.get("error.status_code");
     	String message = (String)ctx.get("error.message");
-    	*/
+    	
     	
     	
         //return String.format("Exception: %s\n status_code: %d\n error message: %s", exception, status_code, message);
