@@ -40,7 +40,7 @@ public class PostFilter extends ZuulFilter {
     	RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 		
-		logger.info("--->>> PostFilter"+ request.getMethod() + "," + request.getRequestURL().toString());
+		logger.info("--->>> PostFilter：  "+ request.getMethod() + "," + request.getRequestURL().toString());
 		
         return null;
     }

@@ -1,6 +1,7 @@
 package Zuul;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.context.annotation.Configuration;
@@ -40,19 +41,27 @@ public class PreFilter extends ZuulFilter {
 		
 		logger.info("--->>> PreFilter"+ request.getMethod() + "," + request.getRequestURL().toString());
 		
-		String url = request.getRequestURI().toString();
-		String serviceId = "";
+		try{
 		
-		if(url.contains("/")) {
-			serviceId = url.split("/")[1];
-			if(serviceId.contains("?"))
-				serviceId = url.split("?")[0];
-		}
-		
-		serviceId = url.split("/")[100];
-		
-		if(serviceId != null || !serviceId.isEmpty() || serviceId.equals(service)) {
-			// do something
+			String url = request.getRequestURI().toString();
+			String serviceId = "";
+			
+			if(url.contains("/")) {
+				serviceId = url.split("/")[1];
+				if(serviceId.contains("?"))
+					serviceId = url.split("?")[0];
+			}
+			
+			serviceId = url.split("/")[100];
+			
+			if(serviceId != null || !serviceId.isEmpty() || serviceId.equals(service)) {
+				// do something
+			}
+			
+		}catch(Exception e) {
+			ctx.set("error.status_code", HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			ctx.set("error.message",e.getMessage());
+			ctx.set("error.exception", e);
 		}
 
 	    return null;
