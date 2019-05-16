@@ -1,5 +1,5 @@
 package Zuul;
-
+/*
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.boot.autoconfigure.web.ErrorController;
@@ -16,7 +16,7 @@ public class GlobalErrorController implements ErrorController{
         return "/error";
     }
     
-	/*
+	
     @ResponseBody
     @RequestMapping("/error")
     public String error() {
@@ -32,5 +32,6 @@ public class GlobalErrorController implements ErrorController{
     	
     	return "error message.";
     }
-*/
+
 }
+*/
