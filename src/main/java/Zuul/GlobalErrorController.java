@@ -15,7 +15,8 @@ public class GlobalErrorController implements ErrorController{
     public String getErrorPath() {
         return "/error";
     }
-     
+    
+	/*
     @ResponseBody
     @RequestMapping("/error")
     public String error() {
@@ -31,4 +32,5 @@ public class GlobalErrorController implements ErrorController{
     	
     	return "error message.";
     }
+*/
 }
