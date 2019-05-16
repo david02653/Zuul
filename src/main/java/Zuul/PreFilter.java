@@ -52,7 +52,7 @@ public class PreFilter extends ZuulFilter {
 					serviceId = url.split("?")[0];
 			}
 			
-			//serviceId = url.split("/")[100];
+			serviceId = url.split("/")[100];
 			
 			if(serviceId != null || !serviceId.isEmpty() || serviceId.equals(service)) {
 				// do something
