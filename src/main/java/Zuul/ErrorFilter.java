@@ -51,16 +51,18 @@ public class ErrorFilter extends ZuulFilter {
         */
         
         logger.log(Level.SEVERE, "this is a ErrorFilter :" + throwable.getCause().getMessage(), throwable);
-        /*
+        
         ctx.set("error.exception",throwable.getCause());
         ctx.set("error.status_code", HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         ctx.set("error.message",throwable.getCause().getMessage());
-        */
         
+        
+        /*
         ctx.setSendZuulResponse(false);
 		ctx.setResponseStatusCode(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		ctx.setResponseBody("this is a ErrorFilter :" + throwable.getCause().getMessage());
-		
+		*/
+        
         return null;
     }
 }

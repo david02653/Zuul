@@ -62,6 +62,7 @@ public class PreFilter extends ZuulFilter {
 			ctx.set("error.status_code", HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			ctx.set("error.message",e.getMessage());
 			ctx.set("error.exception", e);
+			//throw e;
 		}
 */
 	    return null;
