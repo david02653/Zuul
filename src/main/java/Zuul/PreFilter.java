@@ -39,7 +39,7 @@ public class PreFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 		
-		logger.info("--->>> PreFilter"+ request.getMethod() + "," + request.getRequestURL().toString());
+		logger.info("--->>> PreFilter： "+ request.getMethod() + "," + request.getRequestURL().toString());
 		
 		try{
 		
@@ -62,6 +62,7 @@ public class PreFilter extends ZuulFilter {
 			ctx.set("error.status_code", HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			ctx.set("error.message",e.getMessage());
 			ctx.set("error.exception", e);
+			throw e;
 		}
 
 	    return null;
