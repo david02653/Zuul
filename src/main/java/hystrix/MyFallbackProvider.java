@@ -1,4 +1,4 @@
-package Zuul;
+package hystrix;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
