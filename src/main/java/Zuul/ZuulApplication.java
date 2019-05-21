@@ -8,6 +8,10 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import error.ErrorFilter;
+import post.PostFilter;
+import pre.PreFilter;
+
 @SpringBootApplication
 @EnableZuulProxy
 public class ZuulApplication {
@@ -34,7 +38,7 @@ public class ZuulApplication {
 	
 	// 要創建此Bean才能執行過濾器
 	@Bean
-    public PreFilter tokenFilter() {
+    public PreFilter preFilter() {
         return new PreFilter();
     }
 	
