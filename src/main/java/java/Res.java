@@ -2,7 +2,7 @@ package java;
 
 public class Res {
 	
-	public static String serviceName(String url) {
+	public static String splitServiceId(String url) {
 		String temp = "";
 		
 		if(url.contains("/")) {
