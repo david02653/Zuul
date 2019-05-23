@@ -41,6 +41,8 @@ public class PreFilter extends ZuulFilter {
 		
 		logger.info("--->>> PreFilter： "+ request.getMethod() + "," + request.getRequestURL().toString());
 		
+		logger.info("--->>> header: " + request.getHeader("user-agent"));
+		
 
 		
 		String url = request.getRequestURI().toString();
