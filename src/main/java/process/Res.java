@@ -1,4 +1,4 @@
-package java;
+package process;
 
 public class Res {
 	
