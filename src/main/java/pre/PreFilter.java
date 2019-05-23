@@ -57,7 +57,7 @@ public class PreFilter extends ZuulFilter {
 
 		
 		String url = request.getRequestURI().toString();
-		String serviceId = res.serviceName(url);
+		String serviceId = Res.splitServiceId(url);
 		
 		if(serviceId != null || !serviceId.isEmpty() || serviceId.equals(service)) {
 			// do something

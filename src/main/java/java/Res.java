@@ -1,6 +1,6 @@
 package java;
 
-public class res {
+public class Res {
 	
 	public static String serviceName(String url) {
 		String temp = "";
