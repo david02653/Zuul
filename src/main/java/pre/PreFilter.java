@@ -1,5 +1,7 @@
 package pre;
 
+import java.*;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,20 +41,23 @@ public class PreFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 		
+		String requestHeader = request.getHeader("user-agent");
+		
 		logger.info("--->>> PreFilter： "+ request.getMethod() + "," + request.getRequestURL().toString());
 		
-		logger.info("--->>> header: " + request.getHeader("user-agent"));
+		logger.info("--->>> header: " + requestHeader);
+		
+		if(Device.isMobileDevice(requestHeader))
+			logger.info("--->>> 使用手機瀏覽器");
+		else
+			logger.info("--->>> 使用電腦瀏覽器");
+		
+		
 		
 
 		
 		String url = request.getRequestURI().toString();
-		String serviceId = "";
-		
-		if(url.contains("/")) {
-			serviceId = url.split("/")[1];
-			if(serviceId.contains("?"))
-				serviceId = url.split("?")[0];
-		}
+		String serviceId = res.serviceName(url);
 		
 		if(serviceId != null || !serviceId.isEmpty() || serviceId.equals(service)) {
 			// do something
