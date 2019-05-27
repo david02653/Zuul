@@ -24,7 +24,8 @@ public class PreFilter extends ZuulFilter {
 	public int filterOrder() {
 		return 0;
 	}
-
+	
+	// Filter種類
 	@Override
 	public String filterType() {
 		return FilterConstants.PRE_TYPE;
@@ -35,6 +36,8 @@ public class PreFilter extends ZuulFilter {
 	public boolean shouldFilter() {
 		return true;
 	}
+	
+	// Filter執行
     @Override
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
