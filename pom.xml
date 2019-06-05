@@ -104,6 +104,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- Info page provids Build Information -->
 				<executions>
 			        <execution>
 			            <goals>
